@@ -31,17 +31,16 @@
 
     <div class="row">
         @forelse ($messages as $message)
-            <div class="col-6">
-                <img class="img-thumbnail" src="{{ $message->image }}">
-                <p class="card-text">
-                    {{ $message->content }}
-                    <a href="/messages/{{ $message->id }}">Leer más</a>
-                </p>
+            <div class="col-6 mt-5">
+                {{-- Incluyo indicando carpeta y archivo --}}
+                @include('messages.message')
             </div>
         @empty
             <p>No hay mensajes destacados.</p>
         @endforelse
+    </div>
 
+    <div class="row">
         @if(count($messages))
             <div class="mt-2 mx-auto">
                 {{-- Este método solo estará disponible si estamos usando el metodo de Paginacion --}}

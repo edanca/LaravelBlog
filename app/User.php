@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function messages() {
+        // con Message::class  indicamos que otro modelo tiene muchos de su ID, 1 USER has many MESSAGES
+        return $this->hasMany(Message::class)->orderBy('created_at', 'desc');
+    }
 }

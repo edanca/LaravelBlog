@@ -15,10 +15,12 @@ use Faker\Generator as Faker;
 
 $factory->define(App\User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+		'name' => $faker->name,
+		'username' => $faker->username,
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'remember_token' => str_random(10),
+		'remember_token' => str_random(10),
+		'avatar' => $faker->imageUrl(300, 300, 'people'),
     ];
 });
 
@@ -31,6 +33,9 @@ $factory->define(App\Message::class, function (Faker $faker) {
 	// imageUrl() es un metodo de $faker que nos trae imagenes de LoremPixel
 	return [
 		'content' => $faker->realText(random_int(20, 160)),
-		'image' => $faker->imageUrl(600, 338)
+		'image' => $faker->imageUrl(600, 338),
+		// Quitar created y updated si es que se quiere que se genere con la fecha y ahora del momento de creación
+		'created_at' => $faker->dateTimeThisDecade,
+		'updated_at' => $faker->dateTimeThisDecade,
 	];
 });
