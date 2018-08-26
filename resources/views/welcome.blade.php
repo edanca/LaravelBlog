@@ -31,7 +31,7 @@
 
     <div class="row">
         @forelse ($messages as $message)
-            <div class="col-6 mt-5">
+            <div class="col-6">
                 {{-- Incluyo indicando carpeta y archivo --}}
                 @include('messages.message')
             </div>

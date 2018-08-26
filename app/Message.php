@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-    // Para evitar el error MassAssignmentException
+    // Para evitar el error MassAssignmentException se agrega $guarded como vacio
     // Array de columnas que sten protegidas, tales como contraseñas o algo privado
     protected $guarded = [];
 

@@ -211,4 +211,10 @@ return [
 
     ],
 
+	/*
+	----------------------
+	To change language to Faker database data generator
+	----------------------
+	*/
+	'faker_locale' => 'es_AR',
 ];

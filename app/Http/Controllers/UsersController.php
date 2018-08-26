@@ -15,5 +15,14 @@ class UsersController extends Controller
         return view('users.show', [
             'user' => $user,
         ]);
-    }
+	}
+	
+	public function follows($username) {
+
+		$user = User::where('username', $username)->first();
+
+		return view('users.follows', [
+			'user' => $user,
+		]);
+	}
 }
