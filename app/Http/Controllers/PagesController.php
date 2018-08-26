@@ -11,7 +11,7 @@ class PagesController extends Controller
     public function home() {
 
     	// $messages = Message::all();
-    	$messages = Message::latest()->paginate(10);
+    	$messages = Message::latest()->paginate(6);
 
     	// var_dump() en laravel dd()
     	// dd($messages);
