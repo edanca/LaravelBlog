@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
 use App\Message;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
@@ -25,10 +25,11 @@ class UsersController extends Controller
 	
 	public function follow($username, Request $request) {
 		// Current User follows another User
+		// We access to Request since this is called by a POST method
 
 		$user = $this->findByUserName($username);
 
-		// User already logged-in gived by the Request
+		// User already logged-in gived by the Request, this user() is Model
 		$me = $request->user();
 
 		$me->follows()->attach($user);
@@ -45,6 +46,7 @@ class UsersController extends Controller
 
 		return view('users.follows', [
 			'user' => $user,
+			'follows' => $user->follows,
 		]);
 	}
 
@@ -52,5 +54,31 @@ class UsersController extends Controller
 	private function findByUserName($username) {
 		// To find a User
 		return User::where('username', $username)->first();
+	}
+
+
+	public function unfollow($username, Request $request) {
+		// Current User follows another User
+		// We access to Request since this is called by a POST method
+
+		$user = $this->findByUserName($username);
+
+		// User already logged-in gived by the Request, this user() is Model
+		$me = $request->user();
+
+		$me->follows()->detach($user);
+
+		return redirect("/$username")->withSuccess('Usuario no seguido!');
+	}
+
+
+	public function followers($username) {
+
+		$user = $this->findByUserName($username);
+
+		return view('users.follows', [
+			'user' => $user,
+			'follows' => $user->followers,
+		]);
 	}
 }

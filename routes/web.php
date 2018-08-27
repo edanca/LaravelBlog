@@ -23,6 +23,14 @@ Auth::routes();
 
 Route::get('/{username}', 'UsersController@show');
 
+// Shows all the Users that the User follows
 Route::get('/{username}/follows', 'UsersController@follows');
 
+// Make follow a User
 Route::post('/{username}/follow', 'UsersController@follow');
+
+// Make unfolloww a User
+Route::post('/{username}/unfollow', 'UsersController@unfollow');
+
+// Shows the followers that a the User has
+Route::get('/{username}/followers', 'UsersController@followers');
