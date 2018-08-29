@@ -19,6 +19,12 @@ Route::post('/messages/create', 'MessagesController@create')->middleware('auth')
 
 Auth::routes();
 
+// With this route, we redirect the user to login with facebook
+Route::get('/auth/facebook', 'SocialAuthController@facebook');
+
+// Receive data from Facebook User logged
+Route::get('/auth/facebook/callback', 'SocialAuthController@callback');
+
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/{username}', 'UsersController@show');
