@@ -52,4 +52,10 @@ class User extends Authenticatable
 		// With "contains" we are asking if this user follows the user indicated as parameter, this return true or false
 		return $this->follows->contains($user);
 	}
+
+
+	public function socialProfiles() {
+
+		return $this->hasMany(SocialProfile::class);
+	}
 }
