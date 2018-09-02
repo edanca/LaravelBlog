@@ -16,6 +16,14 @@
 
 
 @if (Auth::check())
+
+	{{-- dms is direc messages --}}
+	<form action="/{{ $user->username }}/dms" method="post">
+		<input type="text" name="message" class="form-control">
+		<button type="submit" class="btn btn-success">Enviar DM</button>
+	</form>
+
+
 	{{-- user is the Model --}}
 	@if (Auth::user()->isFollowing($user))
 		<form action="/{{ $user->username }}/unfollow" method="post" class="mb-3">
