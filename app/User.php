@@ -50,6 +50,7 @@ class User extends Authenticatable
 	public function isFollowing(User $user) {
 
 		// With "contains" we are asking if this user follows the user indicated as parameter, this return true or false
+		// In this case follows returns an array and we validate if that array "contains" the $user
 		return $this->follows->contains($user);
 	}
 

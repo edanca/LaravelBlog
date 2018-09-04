@@ -17,11 +17,21 @@
 
 @if (Auth::check())
 
-	{{-- dms is direc messages --}}
-	<form action="/{{ $user->username }}/dms" method="post">
-		<input type="text" name="message" class="form-control">
-		<button type="submit" class="btn btn-success">Enviar DM</button>
-	</form>
+	@if (Gate::allows('dms', $user))
+		{{-- dms is direc messages --}}
+		<form action="/{{ $user->username }}/dms" method="post" class="form-inline">
+			@csrf
+			<label class="sr-only" for="inlineFormInputGroupUsername">Message</label>
+			<div class="input-group mb-2 mr-sm-2">
+				<div class="input-group-prepend">
+					<button type="submit" class="input-group-text">Enviar</button>
+				</div>
+				<input type="text" name="message" class="form-control" id="inlineFormInputGroupUsername" placeholder="Direct Message">
+			</div>
+			{{-- <input type="text" name="message" class="form-control mb-2 col col-md-8">
+			<button type="submit" class="btn btn-success col col-md-4">Enviar DM</button> --}}
+		</form>
+	@endif
 
 
 	{{-- user is the Model --}}

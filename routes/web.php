@@ -15,8 +15,6 @@ Route::get('/', 'PagesController@home');
 
 Route::get('/messages/{message}', 'MessagesController@show');
 
-Route::post('/messages/create', 'MessagesController@create')->middleware('auth');
-
 Auth::routes();
 
 // With this route, we redirect the user to login with facebook
@@ -34,11 +32,21 @@ Route::get('/{username}', 'UsersController@show');
 // Shows all the Users that the User follows
 Route::get('/{username}/follows', 'UsersController@follows');
 
-// Make follow a User
-Route::post('/{username}/follow', 'UsersController@follow');
-
-// Make unfolloww a User
-Route::post('/{username}/unfollow', 'UsersController@unfollow');
-
 // Shows the followers that a the User has
 Route::get('/{username}/followers', 'UsersController@followers');
+
+
+Route::group(['middleware' => 'auth'], function() {
+
+	Route::post('/{username}/dms', 'UsersController@sendPrivateMessage');
+	Route::post('/messages/create', 'MessagesController@create'); //->middleware('auth');
+
+	// Make follow a User
+	Route::post('/{username}/follow', 'UsersController@follow');
+
+	// Make unfolloww a User
+	Route::post('/{username}/unfollow', 'UsersController@unfollow');
+
+	// TODO: crear controlador para conversaciones
+	Route::get('/conversations/{conversation}', 'UsersController@showConversation');
+});
