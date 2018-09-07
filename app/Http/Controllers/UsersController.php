@@ -87,10 +87,12 @@ class UsersController extends Controller
 		$me = $request->user();
 		$message = $request->input('message');
 
-		$conversation = Conversation::create();
+		$conversation = Conversation::between($me, $user);
+
 		// This way, we use Conversation Model function to add a User to the conversation
-		$conversation->users()->attach($me);
-		$conversation->users()->attach($user);
+		// $conversation = Conversation::create();
+		// $conversation->users()->attach($me);
+		// $conversation->users()->attach($user);
 
 		// Create Private Message from current user to the intended user
 		$privateMessage = PrivateMessage::create([

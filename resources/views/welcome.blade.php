@@ -12,7 +12,7 @@
 
     {{-- VALIDATION EXAMPLE --}}
     <div class="row">
-        <form action="/messages/create" method="post" class="needs-validation" novalidate>
+        <form action="/messages/create" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
             <div class="form-group @if($errors->has('message')) was-validated @endif">
                 {{-- {{ csrf_field() }} --}}
                 @csrf
@@ -24,7 +24,8 @@
                             {{ $error }}
                         </span>
                     @endforeach
-                @endif
+				@endif
+				<input type="file" name="image" class="form-control-file">
             </div>
         </form>
     </div>

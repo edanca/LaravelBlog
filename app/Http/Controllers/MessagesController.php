@@ -39,12 +39,14 @@ class MessagesController extends Controller
 
 		// Since we already validate with the middleware auth that the user is looged-in we directly use the USER that came in the request
 		$user = $request->user();
+		$image = $request->file('image');
 
     	$message = Message::create([
 			'user_id' => $user->id,
     		'content' => $request->input('message'),
     		// 'image' => 'http://lorempixel.com/600/338?' . mt_rand(0, 1000)
-    		'image' => 'https://picsum.photos/600/338?image=' . mt_rand(0, 1000) //picsum only has 1000 images
+			// 'image' => 'https://picsum.photos/600/338?image=' . mt_rand(0, 1000) //picsum only has 1000 images
+			'image' => $image->store('messages', 'public'), // Para public se creó un enlace simbólico en la raíz del projecto
     	]);
 
     	// dd($message);

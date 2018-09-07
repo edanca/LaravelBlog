@@ -12,5 +12,15 @@ class Message extends Model
 
     public function user() {
         return $this->belongsTo(User::class);
-    }
+	}
+	
+
+	public function getImageAttribute($image) {
+		// When adding get at the begining and Attribute at the end we intercep the "Image" attribute when this is requested by its Model
+		if (!$image || starts_with($image, 'http')) {
+			return $image;
+		}
+
+		return \Storage::disk('public')->url($image);
+	}
 }
