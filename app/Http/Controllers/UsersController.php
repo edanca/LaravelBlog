@@ -14,6 +14,7 @@ class UsersController extends Controller
     public function show($username) {
 		// To see a User with its created messages
 
+		throw new \Exeption("Simulando un error.");
 		$user = $this->findByUserName($username);
 		// $messages = $user->messages; // This bring us all the messages for that user
 		$messages = Message::where('user_id', $user->id)->paginate(4); // This bring all the messages and create a Pagination
@@ -119,6 +120,8 @@ class UsersController extends Controller
 
 	private function findByUserName($username) {
 		// To find a User
-		return User::where('username', $username)->first();
+		// return User::where('username', $username)->first();
+		// Use firstOrFail in case no user was found throw an exception by failing and this calls our 404 view
+		return User::where('username', $username)->firstOrFail();
 	}
 }
