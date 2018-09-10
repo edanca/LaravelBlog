@@ -52,9 +52,9 @@ class Handler extends ExceptionHandler
 	
 	public function render($request, Exception $exception)
     {
-		// if (!$exception instanceof HttpException && config('app.debug')) {
-		// 	$exception = new HttpExcetion(500, $exception->getMessage(), $exception);
-		// }
+		if (!$exception instanceof HttpException && config('app.debug')) {
+			$exception = new HttpExcetion(500, $exception->getMessage(), $exception);
+		}
         return parent::render($request, $exception);
     }
 }

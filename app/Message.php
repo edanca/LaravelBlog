@@ -26,4 +26,12 @@ class Message extends Model
 
 		return \Storage::disk('public')->url($image);
 	}
+
+
+	public function toSearchableArray() {
+		// Al message le cargamos el usuario que lo genera
+		$this->load('user');
+
+		return $this->toArray();
+	}
 }
