@@ -49,7 +49,8 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+	
+	public function render($request, Exception $exception)
     {
 		if (!$exception instanceof HttpException && config('app.debug')) {
 			$exception = new HttpExcetion(500, $exception->getMessage(), $exception);

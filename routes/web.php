@@ -25,6 +25,9 @@ Route::get('/auth/facebook/callback', 'SocialAuthController@callback');
 
 Route::post('/auth/facebook/register', 'SocialAuthController@register');
 
+// To perofmr the search using the search in navbar
+Route::get('/messages', 'MessagesController@search');
+
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/{username}', 'UsersController@show');
@@ -34,7 +37,6 @@ Route::get('/{username}/follows', 'UsersController@follows');
 
 // Shows the followers that a the User has
 Route::get('/{username}/followers', 'UsersController@followers');
-
 
 Route::group(['middleware' => 'auth'], function() {
 
