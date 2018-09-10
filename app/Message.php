@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Message extends Model
 {
+	use Searchable;
+	
     // Para evitar el error MassAssignmentException se agrega $guarded como vacio
     // Array de columnas que sten protegidas, tales como contraseñas o algo privado
     protected $guarded = [];

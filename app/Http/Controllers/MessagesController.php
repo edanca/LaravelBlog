@@ -59,7 +59,9 @@ class MessagesController extends Controller
 		$query = $request->input('query');
 
 		// This way the query will acompplish the WHERE and will bring us all the users for that query
-		$messages = Message::with('user')->where('content', 'LIKE', "%$query%")->get();
+		// $messages = Message::with('user')->where('content', 'LIKE', "%$query%")->get(); // Replaced by laravel scout and algolia
+		$messages = Message::search($query)->get();
+		$messages->load('user');
 
 		return view('messages.index', [
 			'messages' => $messages,
