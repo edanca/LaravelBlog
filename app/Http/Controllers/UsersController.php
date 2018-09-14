@@ -14,7 +14,7 @@ class UsersController extends Controller
     public function show($username) {
 		// To see a User with its created messages
 
-		throw new \Exeption("Simulando un error.");
+		// throw new \Exeption("Simulando un error.");
 		$user = $this->findByUserName($username);
 		// $messages = $user->messages; // This bring us all the messages for that user
 		$messages = Message::where('user_id', $user->id)->paginate(4); // This bring all the messages and create a Pagination
