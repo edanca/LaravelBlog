@@ -17,7 +17,7 @@ class UsersController extends Controller
 		// throw new \Exeption("Simulando un error.");
 		$user = $this->findByUserName($username);
 		// $messages = $user->messages; // This bring us all the messages for that user
-		$messages = Message::where('user_id', $user->id)->paginate(4); // This bring all the messages and create a Pagination
+		$messages = Message::where('user_id', $user->id)->latest()->paginate(4); // This bring all the messages and create a Pagination
         
         return view('users.show', [
 			'user' => $user,

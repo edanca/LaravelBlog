@@ -52,3 +52,5 @@ Route::group(['middleware' => 'auth'], function() {
 	// TODO: crear controlador para conversaciones
 	Route::get('/conversations/{conversation}', 'UsersController@showConversation');
 });
+
+Route::get('/api/messages/{message}/responses', 'MessagesController@responses');
